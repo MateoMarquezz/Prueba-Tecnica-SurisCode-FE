@@ -33,7 +33,7 @@ export class DashboardVentaComponent implements OnInit {
   vendedores: Vendedor[] = [];
   vendedorSeleccionado: Vendedor | null = null;
   columnas: string[] = ['select', 'codigo', 'descripcion', 'precio', 'deposito'];
-  dataArticulos = new MatTableDataSource<Articulo>([]); // Inicializa con un array vacío
+  dataArticulos = new MatTableDataSource<Articulo>([]); 
 
   constructor(private ventaService: VentaService) {}
 
