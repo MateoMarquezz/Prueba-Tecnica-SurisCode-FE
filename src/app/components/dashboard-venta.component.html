@@ -1,0 +1,54 @@
+<div class="dashboard-container">
+  <!-- Desplegable para seleccionar el vendedor -->
+  <mat-form-field appearance="fill" class="vendedor-select">
+    <mat-label>Seleccionar Vendedor</mat-label>
+    <mat-select [(ngModel)]="vendedorSeleccionado" placeholder="Seleccione un vendedor">
+
+      <mat-option *ngFor="let vendedor of vendedores" [value]="vendedor">
+        {{ vendedor.descripcion }}
+      </mat-option>
+        
+    </mat-select>
+  </mat-form-field>
+
+  <table mat-table [dataSource]="dataArticulos" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="deseleccionar($event)"></mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let articulo">
+        <mat-checkbox [(ngModel)]="articulo.selected"></mat-checkbox>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="codigo">
+      <th mat-header-cell *matHeaderCellDef> Código </th>
+      <td mat-cell *matCellDef="let articulo"> {{ articulo.codigo }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="descripcion">
+      <th mat-header-cell *matHeaderCellDef> Descripción </th>
+      <td mat-cell *matCellDef="let articulo"> {{ articulo.descripcion }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="precio">
+      <th mat-header-cell *matHeaderCellDef> Precio </th>
+      <td mat-cell *matCellDef="let articulo"> {{ articulo.precio | currency }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="deposito">
+      <th mat-header-cell *matHeaderCellDef> Depósito </th>
+      <td mat-cell *matCellDef="let articulo"> {{ articulo.deposito }} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+  </table>
+
+  <div class="guardar-pedido-container">
+    <button mat-raised-button color="primary" (click)="guardarPedido()">
+      Guardar Pedido
+    </button>
+  </div>
+</div>
